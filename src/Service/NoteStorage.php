@@ -17,6 +17,7 @@ use App\Model\NoteInterface;
 
 use function array_splice;
 use function count;
+use function krsort;
 
 final class NoteStorage
 {
@@ -26,6 +27,7 @@ final class NoteStorage
     public function addNote(NoteInterface $note): void
     {
         $this->data[(string) $note->getValue()][] = $note;
+        krsort($this->data);
     }
 
     public function totalValue(): int
