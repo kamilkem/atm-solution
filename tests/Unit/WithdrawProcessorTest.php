@@ -97,7 +97,7 @@ class WithdrawProcessorTest extends TestCase
         $this->assertEquals(1400, $storage->totalValue());
     }
 
-    public function test008processTwoTransactionsThrowsNotEnoughNotes()
+    public function test008processTwoTransactionsThrowsNotEnoughNotes(): void
     {
         $storage = $this->initStorage();
 
@@ -106,6 +106,21 @@ class WithdrawProcessorTest extends TestCase
 
         $this->expectException(NotEnoughNotesException::class);
         $processor->process(200);
+    }
+
+    public function test009processClearsTransactionWhenNoteUnavailable(): void
+    {
+        $storage = $this->initStorage();
+
+        $processor = new WithdrawProcessor($storage);
+        $processor->process(130);
+
+        $this->expectException(NoteUnavailableException::class);
+        $processor->process(999);
+
+        $processor->process(1670);
+
+        $this->assertEquals(0, $storage->totalValue());
     }
 
     private function initStorage(): NoteStorage

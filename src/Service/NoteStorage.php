@@ -76,4 +76,9 @@ final class NoteStorage
 
         return $transaction;
     }
+
+    public function cancelTransaction(): void
+    {
+        $this->transaction = [];
+    }
 }

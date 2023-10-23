@@ -68,6 +68,8 @@ final readonly class WithdrawProcessor
             }
         }
 
+        $this->noteStorage->cancelTransaction();
+
         throw new NoteUnavailableException();
     }
 }
