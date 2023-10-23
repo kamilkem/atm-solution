@@ -1,4 +1,7 @@
 # atm-solution
+
+[![CI](https://github.com/kamilkem/atm-solution/actions/workflows/ci.yml/badge.svg)](https://github.com/kamilkem/atm-solution/actions/workflows/ci.yml)
+
 Simple ATM mechanism in php;
 
 ## Setup
